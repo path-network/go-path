@@ -2,6 +2,8 @@
 
 ![alt text](img/path.png "Path logo")
 
+[![](https://godoc.org/github.com/path-network/go-path/path?status.svg)](https://godoc.org/github.com/path-network/go-path/path)
+[![](https://img.shields.io/badge/go-v.1.13.5-blue)](https://github.com/path-network/go-path)
 
 The official client library written in Go to interact with Path.net's API
 
