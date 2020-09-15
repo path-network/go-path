@@ -9,12 +9,12 @@ The official client library written in Go to interact with Path.net's API
 
 The package can be downloaded using Go's builtin get command:
 
-`go get gitlab.com/cryptio/go-path/path`
+`go get github.com/path-network/go-path/path`
 
 After installing go-path, you may use it in your project by importing it
 
 ```go
-import "gitlab.com/cryptio/go-path/path"
+import "github.com/path-network/go-path/path"
 ```
 
 ## Getting Started
@@ -50,4 +50,4 @@ if err != nil {
 ```
 
 ## Documentation
-For reference on how to use this package, please refer to the [documentation](https://godoc.org/gitlab.com/cryptio/go-path/path).
+For reference on how to use this package, please refer to the [documentation](https://godoc.org/github.com/path-network/go-path/path).
