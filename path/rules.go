@@ -7,7 +7,7 @@ type Rules struct {
 
 // Rule represents a rule entry in the firewall
 type Rule struct {
-	Protocol string `json:"protocol"`
+	Protocol string `json:"protocol,omitempty"`
 	// omitempty is required in the event that these values are not provided, as Go will default to 0, which will be
 	// recognized as an invalid port number
 	DstPort  int    `json:"dst_port,omitempty"`
