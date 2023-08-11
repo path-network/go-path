@@ -1,3 +1,3 @@
-module github.com/path-network/go-path
+module github.com/path-network/go-path/path
 
-go 1.13
+go 1.20
