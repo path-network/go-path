@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -92,6 +92,15 @@ func (client *Client) ChangePassword(oldPassword, newPassword string) error {
 	return err
 }
 
+// AuthorizationTokenType represents the type of authorization token.
+type AuthorizationTokenType string
+
+// AuthorizationToken types
+const (
+	// Default token type Bearer
+	AuthorizationTokenBearer AuthorizationTokenType = "Bearer"
+)
+
 // handleRequest executes the provided request and does all of the error processing. If a successful HTTP status code was received,
 // it returns the clean request body.
 func (client *Client) handleRequest(req *http.Request) ([]byte, error) {
@@ -106,7 +115,7 @@ func (client *Client) handleRequest(req *http.Request) ([]byte, error) {
 		return nil, err
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return body, err
 	}
@@ -145,6 +154,10 @@ func (client *Client) handleRequest(req *http.Request) ([]byte, error) {
 			}
 
 			return body, errors.New(errMsg.String())
+		}
+	case http.StatusCreated:
+		{
+			return body, nil
 		}
 	default:
 		{
@@ -478,5 +491,11 @@ func NewClient(tokenRequest AccessTokenRequest) (Client, error) {
 
 	err := client.GetToken(tokenRequest)
 
+	switch client.token.TokenType {
+	case "bearer":
+		client.token.TokenType = AuthorizationTokenBearer
+	default:
+		client.token.TokenType = AuthorizationTokenBearer
+	}
 	return client, err
 }
